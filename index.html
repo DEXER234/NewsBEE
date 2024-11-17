@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Bee</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,100..900;1,100..900&display=swap"
+        rel="stylesheet">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'>
+    <link rel="icon" href="logo-transparent-png.png" type="image/png">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: "Roboto Condensed", serif;
+    }
+
+    nav {
+        display: flex;
+        align-items: center;
+        justify-content: space-around;
+        height: 2rem;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        color: #333;
+    }
+
+    header {
+        background-color: #000B58;
+        color: white;
+        padding: 20px;
+        text-align: center;
+    }
+
+    .hero-section {
+        position: relative;
+        text-align: center;
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 4rem;
+        color: rgb(227, 227, 227);
+    }
+
+    .hero-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1;
+    }
+
+    .hero-section h1, .hero-section p {
+        position: relative;
+        z-index: 2;
+    }
+
+    .navbar ul {
+        list-style: none;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+    }
+
+    .navbar ul li a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        font-weight: 100;
+    }
+
+    .navbar ul li a:hover {
+        background-color: #005bb5;
+    }
+
+    .news-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 20px;
+        padding: 20px;
+    }
+
+    .news-card {
+        background-color: white;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        overflow: hidden;
+        transition: transform 0.3s;
+    }
+
+    .news-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .news-card img {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+    }
+
+    .news-card .content {
+        padding: 15px;
+    }
+
+    .news-card h3 {
+        margin: 10px 0;
+    }
+
+    .news-card p {
+        font-size: 0.9em;
+        color: #666;
+    }
+
+    .footer {
+        background-color: #000B58;
+        color: white;
+        text-align: center;
+        padding: 20px;
+        margin-top: 20px;
+        position: relative;
+    }
+
+    .footer-link {
+        color: white;
+        text-decoration: none;
+        margin: 0 10px;
+        transition: color 0.3s;
+    }
+
+    .footer-link:hover {
+        color: #005bb5;
+    }
+
+
+    .boton-elegante {
+        padding: 10px 20px;
+        border: 1px solid #ffffff;
+        background-color: #000B58;
+        color: #ffffff;
+        font-size: 1rem;
+        cursor: pointer;
+        transition: all 0.4s ease;
+        outline: none;
+        position: relative;
+        overflow: hidden;
+        font-weight: 200;
+    }
+
+    .boton-elegante::after {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: radial-gradient(circle,
+                rgba(255, 255, 255, 0.25) 0%,
+                rgba(255, 255, 255, 0) 70%);
+        transform: scale(0);
+        transition: transform 0.5s ease;
+    }
+
+    .boton-elegante:hover::after {
+        transform: scale(4);
+    }
+
+    .boton-elegante:hover {
+        border-color: #666666;
+        background: #b91414;
+    }
+
+    .navbar .logo {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+    }
+
+    .navbar .logo img {
+        max-height: 60px;
+        width: auto;
+    }
+
+    ::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: #f4f4f4;
+        border-radius: 10px;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background: #bb2a2a;
+        border-radius: 5px;
+    }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #004494;
+        }
+
+    .read-more, .share-button {
+        margin-top: 10px;
+        padding: 10px 15px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s, color 0.3s;
+    }
+
+    .read-more {
+        background-color: #005bb5;
+        color: white;
+    }
+
+    .read-more:hover {
+        background-color: #004494;
+    }
+
+    .share-button {
+        background-color: #a43131;
+        color: white;
+        margin-left: 10px; /* Add some space between buttons */
+    }
+
+    .share-button:hover {
+        background-color: #aa2828;
+    }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <div class="logo">
+                <img src="logo-transparent-png.png" alt="Logo.png">
+            </div>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#" onclick="fetchNews('general')">General</a></li>
+                <li><a href="#" onclick="fetchNews('technology')">Technology</a></li>
+                <li><a href="#" onclick="fetchNews('business')">Business</a></li>
+                <li><a href="#" onclick="fetchNews('sports')">Sports</a></li>
+                <li><a href="#" onclick="fetchNews('health')">Health</a></li>
+            </ul>
+            <div id="weather" style="color: white; margin-left: 20px;"></div>
+            <div id="date-time" style="color: white; margin-left: 20px;"></div>
+            <div class="main-button">
+                <button id="auth-button" class="boton-elegante" onclick="window.location.href='login.html'">Login / SignUp</button>
+            </div>
+        </nav>
+    </header>
+    <!-- Main Content -->
+    <main>
+        <section class="news-grid" id="news-container">
+            <!-- News Articles will be injected here using JavaScript -->
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2024 News Bee. All rights reserved.</p>
+        <a href="contact.html" class="footer-link">Contact Us</a>
+        <a href="#" class="footer-link">Privacy Policy</a>
+    </footer>
+
+    <script>
+        const API_KEY = '08c6016dd4c84ab29d292a2efab337cc';
+        const BASE_URL = 'https://newsapi.org/v2/top-headlines';
+
+        let currentUser = null;
+
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchNews('general');
+            fetchWeather();
+        });
+
+        async function fetchNews(category) {
+            const url = `${BASE_URL}?category=${category}&country=us&apiKey=${API_KEY}`;
+            try {
+                const response = await fetch(url);
+                const data = await response.json();
+
+                if (data.status === 'ok') {
+                    displayNews(data.articles);
+                } else {
+                    alert('Error fetching news');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('Failed to fetch news. Please try again later.');
+            }
+        }
+
+        function displayNews(articles) {
+    const container = document.getElementById('news-container');
+    container.innerHTML = '';
+
+    articles.forEach(article => {
+        // Check if the article has a valid title and image
+        if (article.title && article.urlToImage) {
+            const card = document.createElement('div');
+            card.className = 'news-card';
+            card.innerHTML = `
+                <div class="save-icon" onclick="saveArticle(article)"> <!-- Save icon in the top right corner -->
+                </div>
+                <img src="${article.urlToImage || 'https://via.placeholder.com/400x200'}" alt="${article.title}">
+                <div class="content">
+                    <h3>${article.title}</h3>
+                    <p>${article.description || 'No description available.'}</p>
+                    <div>
+                        <button class="read-more" onclick="window.open('${article.url}', '_blank')">Read More</button>
+                        <button class="share-button" onclick="shareArticle('${article.url}')">
+                            <i class='bx bx-share-alt'></i> Share
+                        </button>
+                    </div>
+                </div>
+            `;
+            container.appendChild(card);
+        }
+    });
+}
+
+        function shareArticle(url) {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check out this news article!',
+                    url: url
+                }).then(() => {
+                    console.log('Article shared successfully');
+                }).catch((error) => {
+                    console.error('Error sharing article:', error);
+                });
+            } else {
+                alert('Sharing not supported on this browser. Please copy the link: ' + url);
+            }
+        }
+
+        function toggleAuth() {
+            if (currentUser) {
+                // User is logged in, show account option
+                document.getElementById('auth-button').innerText = 'My Account';
+                // Redirect to profile edit page or show profile edit options
+                window.location.href = 'profile.html'; // Assuming you have a profile.html
+            } else {
+                // Show login/signup modal or redirect to login page
+                showLoginModal(); // Implement this function to show a login form
+            }
+        }
+
+        async function login(username, password) {
+            const response = await fetch('users.json');
+            const users = await response.json();
+            const user = users.find(user => user.username === username && user.password === password);
+            
+            if (user) {
+                currentUser = user;
+                alert('Login successful!');
+                toggleAuth(); // Update button to 'My Account'
+            } else {
+                alert('Invalid username or password');
+            }
+        }
+
+        async function signup(username, password) {
+            const response = await fetch('users.json');
+            const users = await response.json();
+            
+            // Check if user already exists
+            if (users.find(user => user.username === username)) {
+                alert('User already exists');
+                return;
+            }
+
+            // Add new user to the array
+            users.push({ username, password });
+            
+            // Save updated users array back to the JSON file (this requires server-side code)
+            // For now, just alert the user
+            alert('Signup successful! You can now log in.');
+        }
+
+        // Implement showLoginModal function to display a login form
+        function showLoginModal() {
+            // Code to display a modal for login/signup
+        }
+
+        function updateDateTime() {
+            const now = new Date();
+            const options = { 
+                weekday: 'long', 
+                year: 'numeric', 
+                month: 'long', 
+                day: 'numeric', 
+                hour: '2-digit', 
+                minute: '2-digit', 
+                second: '2-digit', 
+                hour12: true 
+            };
+            document.getElementById('date-time').innerText = now.toLocaleString('en-US', options);
+        }
+
+        // Update the date and time every second
+        setInterval(updateDateTime, 1000);
+        // Initial call to set the date and time immediately
+        updateDateTime();
+
+        const WEATHER_API_KEY = '59e29f16bebb66afbf221caf39e73ce3'; // Replace with your OpenWeatherMap API key
+
+        async function fetchWeather() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(async (position) => {
+                    const { latitude, longitude } = position.coords;
+                    const url = `https://api.openweathermap.org/data/2.5/weather?lat=${22.5744}&lon=${88.3629}&appid=${WEATHER_API_KEY}&units=metric`;
+
+                    try {
+                        const response = await fetch(url);
+                        const data = await response.json();
+
+                        if (data.cod === 200) {
+                            const weatherDescription = data.weather[0].description;
+                            const temperature = data.main.temp;
+                            document.getElementById('weather').innerText = `Weather: ${temperature}°C, ${weatherDescription}`;
+                        } else {
+                            console.error('Error fetching weather data:', data.message);
+                        }
+                    } catch (error) {
+                        console.error('Error:', error);
+                    }
+                }, (error) => {
+                    console.error('Geolocation error:', error);
+                    document.getElementById('weather').innerText = 'Unable to retrieve location';
+                });
+            } else {
+                document.getElementById('weather').innerText = 'Geolocation not supported';
+            }
+        }
+
+    </script>
+</body>
+
+</html>

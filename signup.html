@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:wght@100..900&display=swap" rel="stylesheet">
+    <link rel='stylesheet' href='https://unpkg.com/boxicons@2.1.1/css/boxicons.min.css'>
+    <style>
+        body {
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .form-container {
+            max-width: 400px;
+            width: 100%;
+            padding: 20px;
+            background-color: white;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s;
+        }
+        .form-container:hover {
+            transform: translateY(-5px);
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            color: #005bb5;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input {
+            width: 100%;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            transition: border-color 0.3s;
+        }
+        .form-group input:focus {
+            border-color: #005bb5;
+            outline: none;
+        }
+        .form-group button {
+            width: 100%;
+            padding-bottom: 10px;
+            padding-top: 10px;
+            background-color: #005bb5;
+            color: white;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .form-group button:hover {
+            background-color: #004494;
+            transform: scale(1.02);
+        }
+        .form-container p {
+            text-align: center;
+            margin-top: 15px;
+        }
+        .form-container a {
+            color: #005bb5;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .form-container a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <nav class="navbar">
+            <!-- Removed logo image -->
+        </nav>
+    </header>
+
+    <div class="form-container">
+        <h2>Sign Up</h2>
+        <form id="signup-form">
+            <div class="form-group">
+                <label for="signup-name">Full Name:</label>
+                <input type="text" id="signup-name" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-email">Email:</label>
+                <input type="email" id="signup-email" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-phone">Phone Number:</label>
+                <input type="tel" id="signup-phone" required>
+            </div>
+            <div class="form-group">
+                <label for="signup-password">Password:</label>
+                <div style="position: relative;">
+                    <input type="password" id="signup-password" required>
+                    <i class='bx bx-show' id="toggle-password" style="position: absolute; right: 10px; top: 10px; cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="signup-confirm-password">Confirm Password:</label>
+                <div style="position: relative;">
+                    <input type="password" id="signup-confirm-password" required>
+                    <i class='bx bx-show' id="toggle-confirm-password" style="position: absolute; right: 10px; top: 10px; cursor: pointer;"></i>
+                </div>
+            </div>
+            <div class="form-group">
+                <button type="submit" id="signup-button">Sign Up</button>
+                <button type="button" id="login-button" style="display:none;">Login</button>
+            </div>
+        </form>
+        <p>Already have an account? <a href="login.html">Login</a></p>
+    </div>
+
+    <script>
+        const users = []; // Array to hold user data
+
+        document.getElementById('signup-form').addEventListener('submit', function (event) {
+            event.preventDefault(); // Prevent form submission
+
+            const name = document.getElementById('signup-name').value;
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            // Simulate saving to CSV (you would replace this with an actual server call)
+            users.push({ name, email, password });
+            alert('Sign up successful! You can now log in.');
+
+            // Show login button
+            document.getElementById('signup-button').style.display = 'none';
+            document.getElementById('login-button').style.display = 'block';
+        });
+
+        document.getElementById('login-button').addEventListener('click', function () {
+            const email = document.getElementById('signup-email').value;
+            const password = document.getElementById('signup-password').value;
+
+            // Check if user exists
+            const user = users.find(user => user.email === email && user.password === password);
+            if (user) {
+                alert('Logging in successfully!');
+                // Replace button with username
+                document.getElementById('login-button').style.display = 'none';
+                const usernameDisplay = document.createElement('span');
+                usernameDisplay.textContent = user.name;
+                usernameDisplay.style.cursor = 'pointer';
+                usernameDisplay.onclick = function () {
+                    alert('Logging out...');
+                    // Reset form and show signup button again
+                    document.getElementById('signup-button').style.display = 'block';
+                    usernameDisplay.remove();
+                };
+                document.querySelector('.form-container').appendChild(usernameDisplay);
+            } else {
+                alert('Invalid email or password.');
+            }
+        });
+
+        document.getElementById('toggle-password').addEventListener('click', function () {
+            const passwordInput = document.getElementById('signup-password');
+            const type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordInput.setAttribute('type', type);
+            this.classList.toggle('bx-show');
+            this.classList.toggle('bx-hide');
+        });
+
+        document.getElementById('toggle-confirm-password').addEventListener('click', function () {
+            const confirmPasswordInput = document.getElementById('signup-confirm-password');
+            const type = confirmPasswordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+            confirmPasswordInput.setAttribute('type', type);
+            this.classList.toggle('bx-show');
+            this.classList.toggle('bx-hide');
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,200..1000;1,200..1000&display=swap"
+        rel="stylesheet">
+    <title>Contact Us</title>
+    <style>
+        /* Add styles for centering the card */
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f4f4f4; /* Optional background color */
+            font-family: 'Nunito', sans-serif;
+            background-image: url('gggrain.svg');
+            background-size: cover; /* This will make the background image cover the entire area */
+            background-position: center; /* This centers the image */
+            background-repeat: no-repeat; /* Thi /* Added font family */
+        }
+        .card {
+            background: white;
+            padding: 30px; /* Increased padding */
+            border-radius: 12px; /* Rounded corners */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Enhanced shadow */
+            width: 350px; /* Increased width */
+            transition: transform 0.2s; /* Added transition for hover effect */
+            padding-right: 50px;
+        }
+        .card:hover {
+            transform: scale(1.02); /* Slightly enlarge on hover */
+        }
+        .card h2 {
+            margin-bottom: 20px; /* Spacing below the heading */
+            color: #333; /* Heading color */
+        }
+        .card input, .card textarea {
+            font-family: 'Nunito', sans-serif;
+            width: 100%;
+            margin-bottom: 15px; /* Increased margin */
+            padding: 12px; /* Increased padding */
+            border: 1px solid #ccc;
+            border-radius: 6px; /* Rounded corners */
+            font-size: 16px; /* Increased font size */
+        }
+        .card button {
+            font-family: 'Nunito', sans-serif;
+            padding: 12px; /* Increased padding */
+            background-color: #686868;
+            color: white;
+            border: none;
+            border-radius: 30px; /* Changed to make the button round */
+            width: 106%; /* Set width to 100% for a long button */
+            cursor: pointer;
+            font-size: 16px; /* Increased font size */
+            transition: background-color 0.3s; /* Smooth transition for hover */
+        }
+        .card button:hover {
+            background-color: #6866ef; /* Darker shade on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <form action="https://formsubmit.co/f33663586255a569ee95c059f73b0e6a" method="POST">
+            <h2>Contact Us</h2>
+            <input type="text" name="name" placeholder="Name" required>
+            <input type="email" name="email" placeholder="Email" required>
+            <textarea name="message" placeholder="Message" required></textarea>
+            <button type="submit">Send</button>
+        </form>
+    </div>
+</body>
+</html>
